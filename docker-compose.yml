@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  dpp_data_mining:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dpp_data_mining
+    volumes:
+      - .:/app  # Mount the current directory inside the container
+    ports:
+      - "8000:8000"  # Optional, if you expose any web service or debugging ports
+    environment:
+      - PYTHONUNBUFFERED=1  # Ensures logs are shown in real-time
+    tty: true  # Keep the container running to allow interaction
