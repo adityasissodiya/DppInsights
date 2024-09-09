@@ -18,10 +18,10 @@ def preprocess_data(df):
     Preprocess the dataset.
     - Handle missing values (if any)
     - Encode categorical variables
-    - Scale numerical features (if necessary)
+    - Drop non-numeric columns not useful for the model
     """
-    # Drop any rows with missing values (if applicable)
-    df.dropna(inplace=True)
+    # Drop unnecessary non-numeric columns
+    df = df.drop(columns=['ProductID', 'ProductName'])
 
     # Example of encoding categorical variables using one-hot encoding
     df_encoded = pd.get_dummies(df, columns=['ProductType', 'EndOfLifeOption', 'SupplierLocation', 'Manufacturer'], drop_first=True)
