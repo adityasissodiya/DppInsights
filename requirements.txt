@@ -1,0 +1,6 @@
+pandas
+numpy
+scikit-learn
+tensorflow  # if you're using neural networks
+matplotlib  # for visualizations
+seaborn     # optional, if you're doing advanced plotting
