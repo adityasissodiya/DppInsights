@@ -5,9 +5,7 @@
    - This means that the model correctly predicted the `EndOfLifeOption` for **49%** of the test set. Accuracy is the proportion of correct predictions out of the total number of predictions.
    
    Formula for accuracy:
-  $$
-\text{Accuracy} = \frac{\text{Correct Predictions}}{\text{Total Predictions}} = \frac{147}{300} \approx 0.49
-$$
+ **Accuracy** = (Correct Predictions) / (Total Predictions) = 147 / 300 ≈ 0.49
 
    This accuracy is **just slightly better than random guessing** (which would be around 0.5 for a binary classification problem with balanced classes). It indicates that your decision tree model is not performing very well.
 
@@ -18,9 +16,7 @@ $$
 - **Precision**: Out of all the positive predictions the model made (for either `True` or `False`), how many were actually correct?
   
   Formula for precision:
-$$
-\text{Precision} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
-$$
+**Precision** = (True Positives) / (True Positives + False Positives)
   
   For example, for `False`:
   - Precision is **0.55**, meaning that **55% of the instances predicted as "False" (i.e., non-recyclable)** were actually `False`.
@@ -31,9 +27,7 @@ $$
 - **Recall**: Out of all actual instances of a class (e.g., all true `True` values in the dataset), how many did the model correctly identify?
   
   Formula for recall:
-  $$
-\text{Recall} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
-$$
+**Recall** = (True Positives) / (True Positives + False Negatives)
 
   For example, for `False`:
   - Recall is **0.48**, meaning the model correctly identified **48% of all the actual "False" instances**.
@@ -44,9 +38,7 @@ $$
 - **F1-score**: This is the harmonic mean of precision and recall, giving you a balanced metric that considers both false positives and false negatives. It's useful when you need to account for class imbalance or uneven precision/recall scores.
   
   Formula for F1-score:
-  $$
-\text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
-$$
+**F1 Score** = 2 × (Precision × Recall) / (Precision + Recall)
 
   - For `False`: The F1-score is **0.52**, which balances both precision and recall.
   - For `True`: The F1-score is **0.47**, slightly worse than for `False`.
