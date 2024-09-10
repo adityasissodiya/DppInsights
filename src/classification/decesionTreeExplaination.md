@@ -1,4 +1,4 @@
-
+![alt text](https://github.com/adityasissodiya/DppInsights/blob/0a95f2564c145821d65c30c89eb8dc365e50e513/src/classification/decisionTreePy.png)
 
 ### 1. **Accuracy**: 
    - **Accuracy: 0.49**
