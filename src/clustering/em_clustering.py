@@ -12,6 +12,24 @@ import matplotlib.pyplot as plt
 from data_processing import load_data, preprocess_data
 from feature_engineering import scale_features
 
+# Define paths for results and visualizations
+RESULTS_DIR = 'results/metrics/'
+VISUALIZATIONS_DIR = 'results/visualizations/'
+
+# Ensure the directories exist
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(VISUALIZATIONS_DIR, exist_ok=True)
+
+# Helper function to save metrics as CSV
+def save_metrics(metrics, model_name):
+    metrics_df = pd.DataFrame([metrics])
+    metrics_df.to_csv(os.path.join(RESULTS_DIR, f'{model_name}_metrics.csv'), index=False)
+
+# Helper function to save visualizations (e.g., cluster plots)
+def save_visualization(plot_name):
+    plt.savefig(os.path.join(VISUALIZATIONS_DIR, f'{plot_name}.png'))
+    plt.close()
+
 def run_gmm(X, n_components=3):
     """
     Apply Gaussian Mixture Model (GMM) clustering to the data.
@@ -43,6 +61,14 @@ def evaluate_clustering(X, cluster_labels, gmm):
     print(f"Log-Likelihood: {log_likelihood:.2f}")
     print(f"Silhouette Score: {silhouette_avg:.2f}")
 
+    # Save metrics
+    metrics = {
+        'Model': 'GMM',
+        'Log-Likelihood': log_likelihood,
+        'Silhouette Score': silhouette_avg
+    }
+    save_metrics(metrics, 'gmm')
+
 def plot_clusters(X, cluster_labels, n_components):
     """
     Use PCA to reduce dimensions and plot clusters.
@@ -61,7 +87,7 @@ def plot_clusters(X, cluster_labels, n_components):
     plt.xlabel('PCA Component 1')
     plt.ylabel('PCA Component 2')
     plt.colorbar(label='Cluster Label')
-    plt.show()
+    save_visualization('gmm_cluster_plot')
 
 # Main block to execute the functions
 if __name__ == "__main__":
@@ -86,5 +112,5 @@ if __name__ == "__main__":
         # Evaluate the clustering
         evaluate_clustering(X_scaled, cluster_labels, gmm)
 
-        # Plot the clusters (optional)
+        # Plot the clusters
         plot_clusters(X_scaled, cluster_labels, n_components)

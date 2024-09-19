@@ -4,9 +4,28 @@ import os
 # Add the src directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
 from collections import defaultdict
+
+# Define paths for results and visualizations
+RESULTS_DIR = 'results/metrics/'
+VISUALIZATIONS_DIR = 'results/visualizations/'
+
+# Ensure the directories exist
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(VISUALIZATIONS_DIR, exist_ok=True)
+
+# Helper function to save metrics as CSV
+def save_metrics(metrics, model_name):
+    metrics_df = pd.DataFrame([metrics])
+    metrics_df.to_csv(os.path.join(RESULTS_DIR, f'{model_name}_metrics.csv'), index=False)
+
+# Helper function to save visualizations (e.g., feature distributions)
+def save_visualization(plot_name):
+    plt.savefig(os.path.join(VISUALIZATIONS_DIR, f'{plot_name}.png'))
+    plt.close()
 
 def create_state_labels(df):
     """
@@ -76,3 +95,18 @@ if __name__ == "__main__":
 
     print(f"Number of anomalies detected: {len(anomalies)}")
     print(f"Anomalous transitions at indices: {anomalies}")
+
+    # Save metrics
+    metrics = {
+        'Model': 'Markov Model',
+        'Number of Anomalies': len(anomalies)
+    }
+    save_metrics(metrics, 'markov_model')
+
+    # Visualize and save state transitions distribution
+    unique, counts = np.unique(state_labels, return_counts=True)
+    plt.bar(unique, counts)
+    plt.title('State Distribution (High vs Low Repair Frequency)')
+    plt.xlabel('State')
+    plt.ylabel('Count')
+    save_visualization('markov_model_state_distribution')

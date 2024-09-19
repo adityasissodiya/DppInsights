@@ -12,6 +12,24 @@ import matplotlib.pyplot as plt
 from data_processing import load_data, preprocess_data
 from feature_engineering import scale_features
 
+# Define paths for results and visualizations
+RESULTS_DIR = 'results/metrics/'
+VISUALIZATIONS_DIR = 'results/visualizations/'
+
+# Ensure the directories exist
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(VISUALIZATIONS_DIR, exist_ok=True)
+
+# Helper function to save metrics as CSV
+def save_metrics(metrics, model_name):
+    metrics_df = pd.DataFrame([metrics])
+    metrics_df.to_csv(os.path.join(RESULTS_DIR, f'{model_name}_metrics.csv'), index=False)
+
+# Helper function to save visualizations (e.g., cluster plots)
+def save_visualization(plot_name):
+    plt.savefig(os.path.join(VISUALIZATIONS_DIR, f'{plot_name}.png'))
+    plt.close()
+
 def run_kmeans(X, n_clusters=3):
     """
     Apply K-Means clustering to the data.
@@ -28,12 +46,13 @@ def run_kmeans(X, n_clusters=3):
     
     return kmeans, cluster_labels
 
-def evaluate_clustering(X, cluster_labels):
+def evaluate_clustering(X, cluster_labels, kmeans):
     """
     Evaluate clustering performance using inertia and silhouette score.
     
     :param X: Feature matrix
     :param cluster_labels: Labels for each point resulting from clustering
+    :param kmeans: The fitted KMeans model
     :return: None (prints evaluation metrics)
     """
     inertia = kmeans.inertia_  # Sum of squared distances to the closest cluster center
@@ -41,6 +60,14 @@ def evaluate_clustering(X, cluster_labels):
     
     print(f"Inertia (within-cluster sum of squares): {inertia}")
     print(f"Silhouette Score: {silhouette_avg:.2f}")
+
+    # Save metrics
+    metrics = {
+        'Model': 'K-Means',
+        'Inertia': inertia,
+        'Silhouette Score': silhouette_avg
+    }
+    save_metrics(metrics, 'kmeans')
 
 def plot_clusters(X, cluster_labels, n_clusters):
     """
@@ -60,7 +87,7 @@ def plot_clusters(X, cluster_labels, n_clusters):
     plt.xlabel('PCA Component 1')
     plt.ylabel('PCA Component 2')
     plt.colorbar(label='Cluster Label')
-    plt.show()
+    save_visualization('kmeans_cluster_plot')
 
 # Main block to execute the functions
 if __name__ == "__main__":
@@ -83,7 +110,7 @@ if __name__ == "__main__":
         kmeans, cluster_labels = run_kmeans(X_scaled, n_clusters)
 
         # Evaluate the clustering
-        evaluate_clustering(X_scaled, cluster_labels)
+        evaluate_clustering(X_scaled, cluster_labels, kmeans)
 
-        # Plot the clusters (optional)
+        # Plot the clusters
         plot_clusters(X_scaled, cluster_labels, n_clusters)

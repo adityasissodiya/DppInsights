@@ -4,11 +4,30 @@ import os
 # Add the src directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from matplotlib import pyplot as plt
 import pandas as pd
 import tensorflow as tf
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from data_processing import load_data, preprocess_data, split_data
 from feature_engineering import scale_features
+
+# Define paths for results and visualizations
+RESULTS_DIR = 'results/metrics/'
+VISUALIZATIONS_DIR = 'results/visualizations/'
+
+# Ensure the directories exist
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(VISUALIZATIONS_DIR, exist_ok=True)
+
+# Helper function to save metrics as CSV
+def save_metrics(metrics, model_name):
+    metrics_df = pd.DataFrame([metrics])
+    metrics_df.to_csv(os.path.join(RESULTS_DIR, f'{model_name}_metrics.csv'), index=False)
+
+# Helper function to save visualizations (e.g., predicted vs actual plot)
+def save_visualization(plot_name):
+    plt.savefig(os.path.join(VISUALIZATIONS_DIR, f'{plot_name}.png'))
+    plt.close()
 
 def build_neural_network(input_shape):
     """
@@ -63,6 +82,24 @@ def evaluate_model(model, X_test, y_test):
     print(f"Mean Squared Error (MSE): {mse:.2f}")
     print(f"Mean Absolute Error (MAE): {mae:.2f}")
     print(f"R-squared (R2): {r2:.2f}")
+
+    # Save metrics
+    metrics = {
+        'Model': 'Neural Network',
+        'MSE': mse,
+        'MAE': mae,
+        'R2': r2
+    }
+    save_metrics(metrics, 'neural_network_regression')
+
+    # Visualization: Predicted vs Actual
+    plt.figure(figsize=(8, 6))
+    plt.scatter(y_test, y_pred, edgecolor='k', alpha=0.7)
+    plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)
+    plt.xlabel('Actual')
+    plt.ylabel('Predicted')
+    plt.title('Neural Network Regressor: Predicted vs Actual')
+    save_visualization('neural_network_regressor_predicted_vs_actual')
 
 # Main block to execute the functions
 if __name__ == "__main__":
