@@ -16,7 +16,7 @@ The model doesn't appear to converge very well, which might indicate either that
 ### 2. **Test Accuracy**:
 - **Accuracy: 0.46**
   - The model correctly predicted the `EndOfLifeOption` for only **46%** of the test data.
-  - This is even lower than the accuracy from your previous models (Decision Tree, Random Forest, SVM), which suggests that the neural network, as currently configured, is not learning meaningful patterns in the data.
+  - This is even lower than the accuracy from previous models (Decision Tree, Random Forest, SVM), which suggests that the neural network, as currently configured, is not learning meaningful patterns in the data.
 
 ### 3. **Classification Report**:
 The classification report breaks down the model's performance for each class (`False` and `True`), providing more insight into why the accuracy is low.

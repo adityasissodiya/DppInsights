@@ -1,4 +1,3 @@
-
 ### 1. **Accuracy**:
    - **Accuracy: 0.51**
    - This means that **51%** of the predictions made by the SVM model were correct.
@@ -35,7 +34,7 @@
    - The **precision and recall scores** are similar to the other models, further indicating that no model has yet found a strong pattern in the data to significantly outperform the others.
 
 ### **Key Takeaways**:
-- **Consistent Results**: Across all the models you've tried (Decision Tree, Random Forest, SVM), the accuracy remains around 50-51%. This suggests that the models are finding it difficult to draw meaningful distinctions between `True` and `False` classes based on the current features.
+- **Consistent Results**: Across all the models tried (Decision Tree, Random Forest, SVM), the accuracy remains around 50-51%. This suggests that the models are finding it difficult to draw meaningful distinctions between `True` and `False` classes based on the current features.
 - **Balanced Performance**: The SVM performs fairly evenly across both classes, though it slightly favors predicting `False` (`Hazardous`) over `True` (`Recyclable`).
 
 ---

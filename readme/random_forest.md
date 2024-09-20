@@ -34,7 +34,7 @@
 - **Precision, Recall, F1-Scores**: These metrics show that both models are having a hard time distinguishing between the two classes, though Random Forest performs slightly better. The model is still not fully capturing the patterns that distinguish `True` from `False` very effectively.
 
 ### **What This Means**:
-1. **Slight Improvement**: The Random Forest did improve performance slightly, but not as much as you’d expect from a more advanced model. This suggests that:
+1. **Slight Improvement**: The Random Forest did improve performance slightly, but not as much as expected from a more advanced model. This suggests that:
    - The current feature set may not have enough predictive power.
    - The model may benefit from hyperparameter tuning (e.g., adjusting the number of trees or tree depth).
 

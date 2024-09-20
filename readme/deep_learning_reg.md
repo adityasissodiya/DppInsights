@@ -1,14 +1,4 @@
-Let's break down the output from the **Deep Learning Regression** model:
-
-### 1. **TensorFlow and Hardware Warnings**
-You see several TensorFlow-related warnings at the beginning:
-- **GPU not used**: Since TensorFlow couldn't find CUDA drivers on your machine, the model is running on the CPU. This doesn't impact correctness but may slow down training compared to a GPU.
-- **oneDNN custom operations**: This message indicates that TensorFlow is using custom CPU optimizations, and minor numerical differences may occur due to the computation order.
-- **cuFFT, cuDNN, cuBLAS registration errors**: These are related to missing GPU libraries (CUDA, cuDNN). They don't affect CPU execution.
-
-These warnings can be ignored for your current setup, as the model will still work fine on the CPU.
-
-### 2. **Training Process (Epochs 1-20)**
+### 1. **Training Process (Epochs 1-20)**
 The model trained for **20 epochs**. During each epoch, the **loss** (mean squared error) decreases, which indicates that the model is learning and improving its predictions over time. Here's what happened:
 
 - **Loss** (mean squared error) starts at **340,759** and gradually decreases across the epochs.
@@ -16,7 +6,7 @@ The model trained for **20 epochs**. During each epoch, the **loss** (mean squar
 
 This downward trend in loss suggests that the model is improving, though it might not have fully converged yet. You could try training for more epochs to see if the error continues to decrease.
 
-### 3. **Model Evaluation on Test Data**
+### 2. **Model Evaluation on Test Data**
 After training, the model was evaluated on the **test set**. Here’s a breakdown of the evaluation metrics:
 
 #### **Mean Squared Error (MSE): 99,310.41**
@@ -57,15 +47,3 @@ After training, the model was evaluated on the **test set**. Here’s a breakdow
    - Insufficient training (more epochs needed).
    - Inappropriate feature selection (input features might not be good predictors of `RepairCost`).
    - The neural network architecture might be too simple (more complex models could help).
-
-3. **Room for Improvement**: 
-   - **More epochs**: The model may benefit from training for more than 20 epochs, as the loss was still decreasing by the final epoch.
-   - **Tuning architecture**: You could experiment with adding more layers, neurons, or regularization techniques like dropout to prevent overfitting.
-   - **Feature engineering**: Try creating additional features that might be more predictive of `RepairCost`, or use techniques like PCA to reduce dimensionality.
-
-### **Next Steps**:
-- **Try more epochs**: You can increase the number of epochs to see if the loss continues to decrease and the test performance improves.
-- **Adjust the model architecture**: Consider making the neural network deeper or adding regularization.
-- **Feature engineering**: Investigate if there are additional or alternative features that could improve prediction accuracy.
-
-Would you like to try some improvements, or should we move on to the **Anomaly Detection** section of the project?

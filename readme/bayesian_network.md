@@ -1,4 +1,4 @@
-The output you received shows that the **Bayesian Network** detected **54 anomalies** in the dataset, with the indices of the anomalous records listed in the output.
+The output received shows that the **Bayesian Network** detected **54 anomalies** in the dataset, with the indices of the anomalous records listed in the output.
 
 ### **Breaking Down the Output:**
 
@@ -25,21 +25,4 @@ The output you received shows that the **Bayesian Network** detected **54 anomal
 
 2. **Number of Anomalies**:
    - With **54 anomalies** detected, this suggests that approximately 5.4% of the records in the dataset (assuming you have 1000 records) were identified as having unusual feature combinations.
-   - This percentage is reasonable for detecting outliers or rare cases in the data, though it can be adjusted depending on the threshold you choose.
-
-3. **Next Steps**:
-   - You can **inspect the records** at the specified indices to understand why they were flagged as anomalies. For example, you could look for unusual combinations of `RepairFrequency`, `RecyclabilityScore`, and `CO2Emissions` in those records.
-   - If needed, you can tweak the model’s structure, threshold, or feature selection to detect more or fewer anomalies.
-
-### **How to Inspect the Anomalous Records**:
-
-To inspect the actual records flagged as anomalies, you can extract the rows from the dataset like this:
-
-```python
-anomalies_df = df.iloc[anomalies]
-print(anomalies_df)
-```
-
-This will display the details of the 54 anomalous products so you can investigate the specific feature values that made them stand out.
-
-Would you like to inspect the anomalous records, or would you like to move on to the next step or task? Let me know how you'd like to proceed!
+   - This percentage is reasonable for detecting outliers or rare cases in the data, though it can be adjusted depending on the threshold chosen.

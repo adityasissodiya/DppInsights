@@ -8,7 +8,7 @@ The **Isolation Forest** algorithm detected **50 anomalies** in the dataset, mea
 
 Here’s what this tells us:
 - **Anomaly Detection**: The Isolation Forest flagged 50 data points (out of the total dataset) as being significantly different from the "normal" points.
-- **Contamination Parameter**: Since we set the `contamination=0.05`, this means that the algorithm assumed that 5% of the dataset contained anomalies. If the total dataset has 1000 products (as per your generated dataset), then 5% of 1000 is 50 anomalies, which matches the number of anomalies detected.
+- **Contamination Parameter**: Since we set the `contamination=0.05`, this means that the algorithm assumed that 5% of the dataset contained anomalies. If the total dataset has 1000 products, then 5% of 1000 is 50 anomalies, which matches the number of anomalies detected.
 
 ---
 
@@ -21,10 +21,3 @@ Here’s what this tells us:
 - **Business Insights**: In the context of **Digital Product Passports (DPPs)**, these anomalies could signal products that require attention due to potential sustainability or repairability issues. Manufacturers might want to investigate these products to understand why they are outliers and whether improvements can be made.
 
 ---
-
-### **Next Steps**:
-- **Inspect the Anomalies**: If you want, we can print the details of the anomalous products to investigate why they were flagged as anomalies. This would help you understand which specific features (e.g., `RepairFrequency`, `CO2Emissions`) are unusual for these products.
-  
-- **Tune the Contamination Parameter**: You could experiment with the `contamination` parameter in the Isolation Forest to detect more or fewer anomalies, depending on your tolerance for outliers.
-
-Would you like to inspect the anomalous products in detail, or should we move on to the next anomaly detection technique (like **Markov Models** or **Bayesian Networks**)?

@@ -1,7 +1,3 @@
-It’s possible that no anomalies were detected due to how the transitions and thresholds were set in the Markov Model, or it could be that the dataset lacks clear transition anomalies based on the current configuration.
-
-Here are the most likely reasons why no anomalies were detected:
-
 ### 1. **High Transition Probabilities**:
    - The transition probabilities between states (e.g., `high_repair` and `low_repair`) may be high across the dataset. If the probabilities of all observed transitions exceed the set **threshold** (currently `0.1`), no transitions will be flagged as anomalous.
 
@@ -14,7 +10,7 @@ Here are the most likely reasons why no anomalies were detected:
 
 ---
 
-### **Steps to Debug and Improve**:
+### **Steps to Improve**:
 
 1. **Check Transition Probabilities**:
    - Print the **transition matrix** to see if any of the transition probabilities are low (below the current threshold of `0.1`). This will help confirm if the probabilities are too high for the threshold you’ve set.
