@@ -1,5 +1,4 @@
-The output shows the performance of the **Neural Network** model over the course of 20 training epochs, along with its evaluation on the test data. Let's break down each part of the result and what it means:
-
+The output shows the performance of the **Neural Network** model over the course of 20 training epochs, along with its evaluation on the test data.
 ### 1. **Training Process**:
 - Each **epoch** represents one full pass over the training dataset.
 - The two key metrics during training are:

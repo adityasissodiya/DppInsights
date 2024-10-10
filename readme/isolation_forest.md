@@ -1,9 +1,4 @@
-Let's break down what the output means:
-
-### **1. Data Loaded Successfully!**
-This indicates that the data was successfully loaded, preprocessed, and scaled. This step ensures that the data is ready for applying the **Isolation Forest** algorithm to detect anomalies.
-
-### **2. Number of Anomalies Detected: 50**
+### **1. Number of Anomalies Detected: 50**
 The **Isolation Forest** algorithm detected **50 anomalies** in the dataset, meaning that it identified 50 data points (products) as anomalous or unusual compared to the rest of the data. 
 
 Here’s what this tells us:
